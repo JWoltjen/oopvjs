@@ -44,7 +44,9 @@ class UI {
     }
 
     static deleteBook(el){
-        
+        if (el.classList.contains('delete')){
+            el.parentElement.parentElement.remove(); 
+        }
     }
 
     static clearFields(){
@@ -69,14 +71,22 @@ document.querySelector('#book-form').addEventListener('submit', (e)=> {
     const author = document.querySelector('#author').value; 
     const isbn = document.querySelector('#isbn').value; 
 
-    //instantiate book
-    const book = new Book(title, author, isbn); 
+    // validate input
 
-    //Add Book to UI
-    UI.addBookToList(book); 
+    if (title === '' || author === '' || isbn === ''){
+        alert("please fill all fields")
+    } else {
+        //instantiate book
+        const book = new Book(title, author, isbn); 
 
-    //Clear fields 
-    UI.clearFields()
+        //Add Book to UI
+        UI.addBookToList(book); 
+
+        //Clear fields 
+        UI.clearFields()
+    }
+
+   
 })
 
 // Event: Remove a Book
