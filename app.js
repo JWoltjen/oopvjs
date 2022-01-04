@@ -11,19 +11,7 @@ class Book {
 // UI Class: Handle UI tasks
 class UI {
     static displayBooks() {
-        const StoredBooks = [
-            {
-                title: 'The Count of Monte Cristo', 
-                author: 'Alexandre Dumas', 
-                isbn: '12345607'
-            }, 
-            {
-                title: 'Candide', 
-                author: 'Voltaire', 
-                isbn: '1525890'
-            }
-        ]; 
-        const books = StoredBooks; 
+        const books = Store.getBooks(); 
 
         books.forEach(book => UI.addBookToList(book)); 
     }
@@ -126,6 +114,9 @@ document.querySelector('#book-form').addEventListener('submit', (e)=> {
 
         //Add Book to UI
         UI.addBookToList(book); 
+
+        //Add Book to store
+        Store.addBook(book); 
 
         //show successmessage
         UI.showAlert('Book added!', 'success')
